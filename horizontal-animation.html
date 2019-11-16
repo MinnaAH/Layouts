@@ -1,0 +1,56 @@
+<!-- (c) Minna Hannula | 10/2019 -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Horizontal animation layout</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Ready to use horizontal animation web layout">
+        <link rel="stylesheet" href="horizontal-animation.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="content">
+                <div class="page page1 activePage">
+                    <div class="container">
+                        <img src="images/" class="picture" alt="picture">
+                    </div>
+                    <div class="rightAlign">
+                        <div class="textArea">
+                            <h1>Lorem ipsum dolor</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est ante in nibh mauris cursus. Est ante in nibh mauris cursus mattis. Vitae purus faucibus ornare suspendisse sed nisi lacus. Elementum curabitur vitae nunc sed. Velit laoreet id donec ultrices tincidunt arcu non sodales. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit. Egestas egestas fringilla phasellus faucibus. Ut etiam sit amet nisl purus. Vulputate enim nulla aliquet porttitor lacus luctus. Tempor nec feugiat nisl pretium fusce id. Risus sed vulputate odio ut enim blandit volutpat. Sagittis eu volutpat odio facilisis mauris sit amet. Suspendisse faucibus interdum posuere lorem ipsum. Pulvinar etiam non quam lacus suspendisse. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo integer. Consectetur adipiscing elit pellentesque habitant morbi tristique. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="page page2">
+                    <div class="leftAlign">
+                        <div class="textArea">
+                            <h1>Lorem ipsum dolor</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est ante in nibh mauris cursus. Est ante in nibh mauris cursus mattis. Vitae purus faucibus ornare suspendisse sed nisi lacus. Elementum curabitur vitae nunc sed. Velit laoreet id donec ultrices tincidunt arcu non sodales. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit. Egestas egestas fringilla phasellus faucibus. Ut etiam sit amet nisl purus. Vulputate enim nulla aliquet porttitor lacus luctus. Tempor nec feugiat nisl pretium fusce id. Risus sed vulputate odio ut enim blandit volutpat. Sagittis eu volutpat odio facilisis mauris sit amet. Suspendisse faucibus interdum posuere lorem ipsum. Pulvinar etiam non quam lacus suspendisse. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo integer. Consectetur adipiscing elit pellentesque habitant morbi tristique. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="navigation">
+            <nav>
+                <li data-target="1" class="navBtn navPage1 activeBtn">Linkki 1</li>
+                <li data-target="2" class="navBtn navPage2">Linkki 2</li>
+            </nav>
+        </div>
+        <script>
+            $(document).ready(function() {          
+                function pagination(page) {
+                    $(".page").removeClass("activePage");
+                    $(".page" + page).addClass("activePage");
+                    $(".navBtn").removeClass("activeBtn");
+                    $(".navPage" + page).addClass("activeBtn");
+                }
+
+                $(document).on("click", ".navBtn:not(.activeBtn)", function() {
+                    pagination($(this).attr("data-target"));
+                });
+            });
+        </script>
+    </body>
+</html>

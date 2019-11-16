@@ -1,0 +1,33 @@
+.main-page{
+    background-color: #EAE7DC;
+    color: #EA5A4F;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    margin: auto;
+}
+
+.next-page {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    margin: auto;
+    background-color: #D8C3a5;
+    color: #EA5A4F;
+}
+
+.maincontent, .nextcontent {
+    margin: auto 5% auto 5%;
+}
+
+a.mainlink, a.nextlink {
+    color: #E98074;
+    border: 2px solid #E98074;
+    padding: 15px 10px;
+    display: block;
+    text-align: center;
+    margin: 25px auto;
+    width: 15%;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 110%;
+    font-weight: 500;
+}

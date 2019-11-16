@@ -1,0 +1,113 @@
+<!-- (c) Minna Hannula | 10/2019 -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Rotation animation layout</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Ready to use rotation animation web layout">
+        <link rel="stylesheet" href="rotation-animation.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="main-page" id="main-page">
+            <div class="maincontent">
+                <a class="mainlink">NEXT PAGE</a>
+                <h1>Main Page Content</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est ante in nibh mauris cursus. Est ante in nibh mauris cursus mattis. Vitae purus faucibus ornare suspendisse sed nisi lacus. Elementum curabitur vitae nunc sed. Velit laoreet id donec ultrices tincidunt arcu non sodales. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit. Egestas egestas fringilla phasellus faucibus. Ut etiam sit amet nisl purus. Vulputate enim nulla aliquet porttitor lacus luctus. Tempor nec feugiat nisl pretium fusce id. Risus sed vulputate odio ut enim blandit volutpat. Sagittis eu volutpat odio facilisis mauris sit amet. Suspendisse faucibus interdum posuere lorem ipsum. Pulvinar etiam non quam lacus suspendisse. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo integer. Consectetur adipiscing elit pellentesque habitant morbi tristique. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p>
+            </div>
+        </div>
+        <div class="next-page" id="next-page">
+            <div class="nextcontent">
+                <a class="nextlink">PREVIOUS PAGE</a>
+                <h1>Next Page Content</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Est ante in nibh mauris cursus. Est ante in nibh mauris cursus mattis. Vitae purus faucibus ornare suspendisse sed nisi lacus. Elementum curabitur vitae nunc sed. Velit laoreet id donec ultrices tincidunt arcu non sodales. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit. Egestas egestas fringilla phasellus faucibus. Ut etiam sit amet nisl purus. Vulputate enim nulla aliquet porttitor lacus luctus. Tempor nec feugiat nisl pretium fusce id. Risus sed vulputate odio ut enim blandit volutpat. Sagittis eu volutpat odio facilisis mauris sit amet. Suspendisse faucibus interdum posuere lorem ipsum. Pulvinar etiam non quam lacus suspendisse. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo integer. Consectetur adipiscing elit pellentesque habitant morbi tristique. Posuere urna nec tincidunt praesent semper feugiat nibh sed.</p>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function() {
+                $.fn.animateRotate = function(angle, duration, easing, complete) {
+                var args = $.speed(duration, easing, complete);
+                var step = args.step;
+                return this.each(function(i, e) {
+                    args.complete = $.proxy(args.complete, e);
+                    args.step = function(now) {
+                    $.style(e, 'transform', 'rotate(' + now + 'deg)');
+                    if (step) return step.apply(e, arguments);
+                    };
+
+                    $({deg: 0}).animate({deg: angle}, args);
+                });
+                };
+
+                $("#main-page").css("height", "100vh");
+                $("#main-page").css("width", "100%");
+                $("#main-page").fadeIn();
+                $(".maincontent").fadeIn();
+                
+                $(".mainlink").on("click", function() {
+                    $(".maincontent").fadeOut();
+                    $("#main-page").animate({
+                        width: "25px",
+                        height: "375px"
+                    }, function() {
+                        $(this).animateRotate(90);
+                    });
+                    
+                    setTimeout(function() {
+                        $("#main-page").fadeOut();       
+                    }, 1500);
+                    
+                    setTimeout(function() {
+                        $("#next-page").animateRotate(0, 0);
+                        $("#next-page").fadeIn();
+                        $("#next-page").animate({
+                            backgroundolor: "#000000"
+                        }, function() {
+                            $(this).animate({
+                                height: "100vh"
+                            }, function() {
+                                $(this).animate({
+                                    width: "100%"
+                                }, function() {
+                                    $(".nextcontent").fadeIn(300);
+                                });
+                            });
+                        });
+                    }, 800);
+                });
+
+                $(".nextlink").on("click", function() {
+                $(".nextcontent").fadeOut();
+                $("#next-page").animate({
+                    width: "25px",
+                    height: "375px"
+                }, function() {
+                    $(this).animateRotate(-90);
+                });
+                
+                setTimeout(function() {
+                    $("#next-page").fadeOut();          
+                }, 1500);
+                
+                setTimeout(function() {
+                $("#main-page").animateRotate(0, 0);
+                    $("#main-page").fadeIn();
+                    $("#main-page").animate({
+                        height: "100vh"
+                    }, function() {
+                        $(this).animate({
+                            width: "100%"
+                        }, function() {
+                            $(".maincontent").fadeIn(300);
+                        });
+                    });
+                }, 1400);
+            });
+            
+        });
+        </script>
+    </body>
+</html>
